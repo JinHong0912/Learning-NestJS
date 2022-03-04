@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class todo2Controller {
   @Get()
   getTodo2(): string {
-    return '2022-03-03 todo2생성';
+    return '2022-03-03 todo2생성 다시 만들기';
   }
 }
