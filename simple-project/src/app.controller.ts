@@ -1,10 +1,12 @@
-import { Controller, Get} from "@nestjs/common";
-import {write} from "fs";
+import { Controller, Get } from '@nestjs/common';
 
-@Controller('/now')
-export class NowController{
-  @Get('/day')
+@Controller('now')
+export class NowController {
+  // GET
+  /* http://localhost:3000/now/day */
+  @Get('day')
   getNow(): string {
-    return 'test_날짜 만들기';
+    const now = new Date();
+    return now.toISOString();
   }
 }
