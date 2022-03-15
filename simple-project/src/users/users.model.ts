@@ -1,4 +1,5 @@
-export interface user {
+export interface User {
+  id: string; // 식별자
   name: string;
   age: number;
   number: string;
