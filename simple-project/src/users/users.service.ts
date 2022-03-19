@@ -12,9 +12,9 @@ export class UsersService {
   }
 
   getUserById(id: string): User {
-    return this.users.find(user) => User.id === id);
+    return this.users.find(user) => user.id === id); // 이 부분에서 질문 하기
   }
-  
+
   // createUsers(name: string, number: string): User {
   //   const users: User = {
   //     id: uuid, //해당 부분에서 순서를 자동으로 부여 및 import 수동으로 등록
