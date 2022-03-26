@@ -13,9 +13,9 @@ export class UsersController {
     return this.usersService.getAllUsers();
   }
 
-  @Get(':id')
-  getUserById(@Param('id') id: string): User {
-    console.log(id);
-    return this.UsersService.getUserById(id);
-  }
+  // @Get(':id')
+  // getUserById(@Param('id') id: string): User {
+  //   console.log(id);
+  //   return this.UsersService.getUserById(id);
+  // }
 }

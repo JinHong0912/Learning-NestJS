@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User, UsersStatus } from './users.model';
 import { v1 as uuid } from 'uuid';
-import {Board} from "../board/board.model";
+import { Board } from '../board/board.model';
 
 @Injectable()
 export class UsersService {
@@ -11,9 +11,9 @@ export class UsersService {
     return this.users;
   }
 
-  getUserById(id: string): User {
-    return this.users.find(user) => user.id === id); // 이 부분에서 질문 하기
-  }
+  // getUserById(id: string): User {
+  //   return this.users.find(user) => user.id === id); // 이 부분에서 질문 하기
+  // }
 
   // createUsers(name: string, number: string): User {
   //   const users: User = {

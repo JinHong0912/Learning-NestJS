@@ -13,27 +13,4 @@ export class BoardController {
   getBoards(): Board[] {
     return this.boardService.getAllBoards();
   }
-
-  @Get(':id')
-  getBoardById(@Param('id') id: string): Board {
-    console.log(id);
-    return this.boardService.getBoardById(id);
-  }
-  @Post()
-  creatBoard(@Body() boardDto: BoardDto): //@Body('title') title: string,
-  //@Body('description') description: string,
-  Board {
-    //console.log(title, description);
-    console.log(boardDto.title);
-    console.log(boardDto.description);
-
-    //return null;
-    return this.boardService.creatBoard(boardDto);
-  }
-
-  //특정부분 삭제
-  @Delete(':id')
-  deleteBoardById(@Param('id') id: string): Board {
-    return this.boardService.getBoardById(id);
-  }
 }
