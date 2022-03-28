@@ -13,4 +13,24 @@ export class BoardController {
   getBoards(): Board[] {
     return this.boardService.getAllBoards();
   }
+  //게시글 등록
+  @Post('')
+  createBoard(
+    //@Body('title') title: string,
+    //@Body('description') description: string,
+    @Body() boardDto: BoardDto,
+  ): Board {
+    console.log(BoardDto);
+    return this.boardService.createBoard(boardDto);
+  }
+
+  @Get(':id')
+  getBoardById(@Param('id') id: string) {
+    return this.boardService.getBoardById(id);
+  }
+
+  @Delete(':id')
+  deleteBoard(@Param('id') id: string): void {
+    this.boardService.deleteBoard(id);
+  }
 }
