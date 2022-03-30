@@ -36,4 +36,8 @@ export class BoardService {
   deleteBoard(id: string): void {
     this.boards = this.boards.filter((board) => board.id !== id);
   }
+  // 업데이트
+  updateBoard(id: string): Board {
+    return this.boards.
+  }
 }
