@@ -6,9 +6,10 @@ import {
   Param,
   Post,
   Put,
+  Patch,
 } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { Board } from './board.model';
+import { Board, BoardStatus } from './board.model';
 import { BoardDto } from './board.dto';
 import { BoardUpdateDto } from './board.updateDto';
 
@@ -33,6 +34,7 @@ export class BoardController {
     return this.boardService.createBoard(boardDto);
   }
   // find One
+  // 배열안에 보드 안에 여러 가지 게시물을  특정 아이디를 통해서 특정 게시글 찾고 정보를 리턴 해준다.
   @Get(':id')
   getBoardById(@Param('id') id: string) {
     return this.boardService.getBoardById(id);
@@ -43,8 +45,12 @@ export class BoardController {
     this.boardService.deleteBoard(id);
   }
   // update
-  @Put(':id')
-  updateBoard(@Param('id') id: string, @Body() boardUpdateDto: BoardUpdateDto) {
-    this.boardService.updateBoard(id);
+
+  @Patch(':id')
+  updateBoardStatus(
+    @Param('id') id: string,
+    @Body('status') status: BoardStatus,
+  ) {
+    return this.boardService.updateBoardStatus(id, status);
   }
 }

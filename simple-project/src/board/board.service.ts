@@ -37,7 +37,9 @@ export class BoardService {
     this.boards = this.boards.filter((board) => board.id !== id);
   }
   // 업데이트
-  updateBoard(id: string): string {
-    return `this update data #${id} update`;
+  updateBoardStatus(id: string, status: BoardStatus): Board {
+    const board = this.getBoardById(id); // 업데이트 하고자 하는 정보를 board에 넣어 준다
+    board.status = status;
+    return board;
   }
 }
