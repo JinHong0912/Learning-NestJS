@@ -6,7 +6,6 @@ import {
   Param,
   Post,
   Put,
-  Patch,
 } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { Board, BoardStatus } from './board.model';
@@ -46,11 +45,8 @@ export class BoardController {
   }
   // update
 
-  @Patch(':id')
-  updateBoardStatus(
-    @Param('id') id: string,
-    @Body('status') status: BoardStatus,
-  ) {
-    return this.boardService.updateBoardStatus(id, status);
+  @Put(':id/status')
+  updateBoardStatus(@Param('id') id: string, @Body() boardDto: BoardDto) {
+    return this.boardService.updateBoard(id, BoardStatus.PRIVATE);
   }
 }
