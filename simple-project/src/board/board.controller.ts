@@ -30,7 +30,7 @@ export class BoardController {
     //@Body('description') description: string,
     @Body() boardDto: BoardDto,
   ): Board {
-    console.log(BoardDto);
+    console.log(boardDto);
     return this.boardService.createBoard(boardDto);
   }
   // find One
@@ -45,8 +45,11 @@ export class BoardController {
     this.boardService.deleteBoard(id);
   }
   // update
-  @Patch(':id')
-  updateBoardStatus(@Param('id') id: string, @Body() boardDto: BoardDto) {
-    return this.boardService.updateBoard(id, BoardStatus.PRIVATE);
+  @Patch(':id/status')
+  updateBoardStatus(
+    @Param('id') id: string,
+    @Body('status') status: BoardStatus,
+  ) {
+    return this.boardService.updateBoard(id, status);
   }
 }

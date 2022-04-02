@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Board00Model, Board00Status } from './board00.model';
-import { v1 as uuid } from 'uuid'; //v1을 쓰는 이유는 uuid의 여러 버전 중에 v1이라는 버전을 사용한다는 뜻
+import { v1 as uuid } from 'uuid';
+import { CreateBoard00Dto } from './dto/create-board.dto';
 
 @Injectable()
 export class Board00Service {
@@ -15,8 +16,9 @@ export class Board00Service {
   }
 
   // 게시물 생성 createBoard00 매서드 만들기
-  createBoard00(title: string, description: string) {
+  createBoard00(createBoard00Dto: CreateBoard00Dto) {
     // 인수를 넣어 준다.
+    const { title, description } = createBoard00Dto;
     const board: Board00Model = {
       //들어 오는 내용을 정의 해준다.
       //유니크한 아이디 생성 id: uuid
@@ -27,6 +29,23 @@ export class Board00Service {
     };
     //게시판 생성된 정보를 Boards00 에 넣어 준다.
     this.board00.push(board); //push매서드 사용해서 제목과 글을 이용해서 새로운 계시글은 넣어 준다.
+    return board;
+  }
+
+  // 게시글 한개만 보기
+  getBoard00ById(id: string): Board00Model {
+    return this.board00.find((board) => board.id === id);
+  }
+
+  //게시글 삭제 하기
+  deleteBoard00(id: string): void {
+    console.log(id);
+    this.board00 = this.board00.filter((board) => board.id !== id); // 삭제를 하고 결과를 다시 board00에 널어 줘야 한다.
+  }
+  // 게시글 업그레이드 하기
+  updateBoard00Status(id: string, status: Board00Status): Board00Model {
+    const board = this.getBoard00ById(id);
+    board.status = Board00Status.PRIVATE;
     return board;
   }
 }
