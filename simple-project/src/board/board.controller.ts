@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
 } from '@nestjs/common';
@@ -44,8 +45,7 @@ export class BoardController {
     this.boardService.deleteBoard(id);
   }
   // update
-
-  @Put(':id/status')
+  @Patch(':id')
   updateBoardStatus(@Param('id') id: string, @Body() boardDto: BoardDto) {
     return this.boardService.updateBoard(id, BoardStatus.PRIVATE);
   }

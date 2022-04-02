@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import { v1 as uuid } from 'uuid';
 import { BoardDto } from './board.dto';
+import { BoardUpdateDto } from './board.updateDto';
 
 @Injectable()
 export class BoardService {
@@ -38,8 +39,8 @@ export class BoardService {
   }
   // 업데이트
   updateBoard(id: string, boardStatus: BoardStatus): void {
-    const board = this.getBoardById(id); // 업데이트 하고자 하는 정보를 board에 넣어 준다;
-    console.log(`${id}, ${board}`);
+    const boardUpdate = this.getBoardById(id); // 업데이트 하고자 하는 정보를 board에 넣어 준다;
+    console.log(`${id}, ${boardUpdate}`);
     this.getBoardById(id);
   }
 }
