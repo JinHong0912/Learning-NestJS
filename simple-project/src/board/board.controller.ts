@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { Board, BoardStatus } from './board.model';
@@ -25,6 +27,7 @@ export class BoardController {
   }
   //게시글 등록
   @Post('')
+  @UsePipes(ValidationPipe)
   createBoard(
     //@Body('title') title: string,
     //@Body('description') description: string,

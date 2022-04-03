@@ -6,11 +6,14 @@ import { Board00Controller } from './board00/board00.controller';
 import { Board00Service } from './board00/board00.service';
 
 @Module({
-  imports: [BoardsModule],
-  //imports: [Board00Module],
-  controllers: [BoardController],
-  //controllers: [Board00Controller],
-  providers: [BoardService],
-  //providers: [Board00Service],
+  //Board
+  //imports: [BoardsModule],
+  //controllers: [BoardController],
+  //providers: [BoardService],
+
+  //Board00
+  imports: [],
+  controllers: [Board00Controller],
+  providers: [Board00Service],
 })
 export class AppModule {}
