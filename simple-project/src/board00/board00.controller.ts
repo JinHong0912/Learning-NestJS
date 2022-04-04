@@ -6,6 +6,8 @@ import {
   Param,
   Patch,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { Board00Service } from './board00.service';
 import { Board00Model, Board00Status } from './board00.model';
@@ -28,6 +30,7 @@ export class Board00Controller {
   //게시물 생성 create
   //Service에서 로직을 처리 했다면 Controller에서 Request와 Response 부분 처리
   @Post('') //Post 요청을 준다.
+  @UsePipes(ValidationPipe)
   creatBoards00(@Body() createBoard00Dto: CreateBoard00Dto): Board00Model {
     console.log(createBoard00Dto);
     return this.board00Service.createBoard00(createBoard00Dto);
