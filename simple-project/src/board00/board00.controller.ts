@@ -13,6 +13,7 @@ import { Board00Service } from './board00.service';
 import { Board00Model, Board00Status } from './board00.model';
 import { Board } from '../board/board.model';
 import { CreateBoard00Dto } from './dto/create-board.dto';
+import { Board00StatusValidationPipe } from './board00-status.valiation.pipe';
 
 @Controller('board00') // 라우팅 path
 export class Board00Controller {
@@ -48,10 +49,10 @@ export class Board00Controller {
   }
 
   //게시글 업데이트
-  @Patch(':id/status')
+  @Patch(':id')
   updateBoards00Status(
     @Param('id') id: string,
-    @Body('status') status: Board00Status,
+    @Body('status', Board00StatusValidationPipe) status: Board00Status,
   ): Board00Model {
     console.log(status);
     return this.board00Service.updateBoard00Status(id, status);
