@@ -6,12 +6,11 @@ import {
   Param,
   Patch,
   Post,
-  Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { Board, BoardStatus } from './board.model';
+import { Board, BoardStatus } from './board.status';
 import { BoardDto } from './board.dto';
 import { BoardUpdateDto } from './board.updateDto';
 import { BoardStatusValiationPipe } from './board-status.valiation.pipe';

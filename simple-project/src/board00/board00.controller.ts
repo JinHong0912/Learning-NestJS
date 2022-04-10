@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { Board00Service } from './board00.service';
 import { Board00Model, Board00Status } from './board00.model';
-import { Board } from '../board/board.model';
 import { CreateBoard00Dto } from './dto/create-board.dto';
 import { Board00StatusValidationPipe } from './board00-status.valiation.pipe';
 
