@@ -1,18 +1,13 @@
 import { Module } from '@nestjs/common';
-import { BoardController } from './board/board.controller';
-import { BoardService } from './board/board.service';
 import { BoardsModule } from './board/board.module';
-import { Board00Controller } from './board00/board00.controller';
-import { Board00Service } from './board00/board00.service';
-import { Board01Controller } from './board01/board01.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from './configs/typeorm.config';
 
 @Module({
   //Board
   imports: [BoardsModule, TypeOrmModule.forRoot(typeormConfig)],
-  controllers: [BoardController],
-  providers: [BoardService],
+  controllers: [],
+  providers: [],
 
   //Board00
   // imports: [],
