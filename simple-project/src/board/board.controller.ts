@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -39,10 +40,11 @@ export class BoardController {
     return this.boardService.getBoardById(id);
   }
   // //삭제
-  // @Delete(':id')
-  // deleteBoard(@Param('id') id: string): void {
-  //   this.boardService.deleteBoard(id);
-  // }
+  @Delete(':id')
+  deleteBoard(@Param('id') id: number): Promise<void> {
+    //this.boardService.deleteBoard(id);
+    return this.boardService.deleteBoard(id);
+  }
   // // update
   // @Patch(':id/status')
   // updateBoardStatus(

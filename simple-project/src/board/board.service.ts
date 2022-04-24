@@ -21,16 +21,17 @@ export class BoardService {
   // //   return this.boards.find((board) => board.id === id);
   // // }
   //
-  //게시글 등록 생성
+  //게시글 등록 생성 => BoardRepository로 이동 => Repository 코드 정리
   async createBoard(boardDto: BoardDto): Promise<BoardEntity> {
-    const { title, description } = boardDto;
-
-    const board = this.boardRepository.create({
-      title,
-      description,
-      status: BoardStatus.PUBLIC,
-    });
-    return await this.boardRepository.save(board);
+    // const { title, description } = boardDto;
+    //
+    // const board = this.boardRepository.create({
+    //   title,
+    //   description,
+    //   status: BoardStatus.PUBLIC,
+    // });
+    // return await this.boardRepository.save(board);
+    return this.boardRepository.createBoard(boardDto);
   }
 
   async getBoardById(id: number): Promise<BoardEntity> {
@@ -44,10 +45,20 @@ export class BoardService {
     return board;
   }
   //
-  // deleteBoard(id: string): void {
-  //   const found = this.getBoardById(id);
-  //   this.boards = this.boards.filter((board) => found.id !== id);
-  // }
+  async deleteBoard(id: number): Promise<void> {
+    //const found = this.getBoardById(id);
+    //this.boards = this.boards.filter((board) => found.id !== id);
+
+    //Delete 사용
+    // const result = await this.boardRepository.delete(id);
+    // console.log('result : ', result);
+
+    //remove 사용
+    const board = await this.getBoardById(id);
+    console.log('--------------------------------------');
+    const result = await this.boardRepository.remove(board);
+    console.log('result : ', result);
+  }
   // // 업데이트
   // updateBoard(id: string, status: BoardStatus): Board {
   //   // const boardUpdate = this.getBoardById(id); // 업데이트 하고자 하는 정보를 board에 넣어 준다;
