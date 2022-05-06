@@ -9,7 +9,7 @@ import { BoardStatus } from './board.status';
 export class BoardService {
   // private을 명시하여 암묵적으로 프로퍼티 할당
   constructor(
-    //생성자 빠짐
+    //생성자 빠짐 // Repository Injection(주입) Service에 Repository를 사용 하기 위해 추가
     @InjectRepository(BoardRepository) private boardRepository: BoardRepository,
   ) {}
 
