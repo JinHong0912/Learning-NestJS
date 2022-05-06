@@ -10,6 +10,7 @@ export class BoardService {
   // private을 명시하여 암묵적으로 프로퍼티 할당
   constructor(
     //생성자 빠짐 // Repository Injection(주입) Service에 Repository를 사용 하기 위해 추가
+    // Inject Repository to Service
     @InjectRepository(BoardRepository) private boardRepository: BoardRepository,
   ) {}
 
@@ -39,7 +40,8 @@ export class BoardService {
 
     //예외 처리
     if (!board) {
-      throw new NotFoundException('존제하지 않는 게시물 입니다');
+      //throw new NotFoundException('존제하지 않는 게시물 입니다');
+      throw new NotFoundException(`Can't find Board with id ${id}`);
     }
 
     return board;

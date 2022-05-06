@@ -39,7 +39,7 @@ export class BoardController {
   getBoardById(@Param('id') id: number): Promise<BoardEntity> {
     return this.boardService.getBoardById(id);
   }
-  // //삭제
+  //삭제
   @Delete(':id')
   deleteBoard(@Param('id') id: number): Promise<void> {
     //this.boardService.deleteBoard(id);
