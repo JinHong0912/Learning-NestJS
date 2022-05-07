@@ -70,7 +70,9 @@ export class BoardService {
     const boardUpdate = await this.getBoardById(id);
     console.log(`${id} , ${status}`);
     console.log('------------------------------------------');
-    boardUpdate.status = BoardStatus.PRIVATE;
+    //boardUpdate.status = BoardStatus.PRIVATE; // 클라이언트가 수정 하지 않아도 무조건 PRIVATE
+    boardUpdate.status = status; // 클라이언트가 수정한 권한으로 변경
+
     await this.boardRepository.save(boardUpdate);
     return boardUpdate;
   }
