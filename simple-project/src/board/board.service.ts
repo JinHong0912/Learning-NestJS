@@ -65,7 +65,16 @@ export class BoardService {
     // const result = await this.boardRepository.remove(board);
     // console.log('result : ', result);
   }
-  // // 업데이트
+  // 업데이트
+  async updateBoard(id: number, status: BoardStatus): Promise<BoardEntity> {
+    const boardUpdate = await this.getBoardById(id);
+    console.log(`${id} , ${status}`);
+    console.log('------------------------------------------');
+    boardUpdate.status = BoardStatus.PRIVATE;
+    await this.boardRepository.save(boardUpdate);
+    return boardUpdate;
+  }
+
   // updateBoard(id: string, status: BoardStatus): Board {
   //   // const boardUpdate = this.getBoardById(id); // 업데이트 하고자 하는 정보를 board에 넣어 준다;
   //   const boardUpdate = this.getBoardById(id);
