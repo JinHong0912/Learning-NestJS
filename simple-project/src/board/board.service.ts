@@ -15,6 +15,14 @@ export class BoardService {
   ) {}
 
   // private boards: Board[] = []; MySQL 사용전 board[] 배열
+  // 모든 정보 조회
+  async getAllBoards(): Promise<BoardEntity[]> {
+    //return this.boardRepository.find();
+    return this.boardRepository.find();
+    // find 메소드에 특정 값을 넣어 주면 특정값만 나오고 비어있을 경우 전체 조회
+    // find({status: "PRIVATE"})
+  }
+
   // getAllBoards(): Board[] {
   //   return this.boards;
   // }
@@ -22,6 +30,7 @@ export class BoardService {
   // //   return this.boards.find((board) => board.id === id);
   // // }
   //
+
   //게시글 등록 생성 => BoardRepository로 이동 => Repository 코드 정리
   createBoard(boardDto: BoardDto): Promise<BoardEntity> {
     // const { title, description } = boardDto;

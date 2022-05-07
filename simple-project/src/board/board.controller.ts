@@ -21,6 +21,11 @@ export class BoardController {
     this.boardService = boardService;
   }
   // //find All
+  @Get('')
+  getBoards(): Promise<BoardEntity[]> {
+    return this.boardService.getAllBoards();
+  }
+
   // @Get('')
   // getBoards(): Board[] {
   //   return this.boardService.getAllBoards();
