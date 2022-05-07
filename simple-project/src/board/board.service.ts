@@ -52,14 +52,18 @@ export class BoardService {
     //this.boards = this.boards.filter((board) => found.id !== id);
 
     //Delete 사용
-    // const result = await this.boardRepository.delete(id);
+    const result = await this.boardRepository.delete(id);
+    // id가 있는지 없는지 확인 하는 부분 팔요 => 없을 시 데이터가 없어도 삭제
+    if (result.affected == 0) {
+      throw new NotFoundException(`Can't find Board with id ${id}`);
+    }
     // console.log('result : ', result);
 
     //remove 사용
-    const board = await this.getBoardById(id);
-    console.log('--------------------------------------');
-    const result = await this.boardRepository.remove(board);
-    console.log('result : ', result);
+    // const board = await this.getBoardById(id);
+    // console.log('--------------------------------------');
+    // const result = await this.boardRepository.remove(board);
+    // console.log('result : ', result);
   }
   // // 업데이트
   // updateBoard(id: string, status: BoardStatus): Board {
