@@ -23,7 +23,7 @@ export class BoardService {
   // // }
   //
   //게시글 등록 생성 => BoardRepository로 이동 => Repository 코드 정리
-  async createBoard(boardDto: BoardDto): Promise<BoardEntity> {
+  createBoard(boardDto: BoardDto): Promise<BoardEntity> {
     // const { title, description } = boardDto;
     //
     // const board = this.boardRepository.create({
