@@ -16,9 +16,9 @@ export class BoardService {
 
   // private boards: Board[] = []; MySQL 사용전 board[] 배열
   // 모든 정보 조회
-  async getAllBoards(): Promise<BoardEntity[]> {
+  async getAllBoards(skip: number, take: number): Promise<BoardEntity[]> {
     //return this.boardRepository.find();
-    return this.boardRepository.find();
+    return this.boardRepository.find({ skip: skip * take, take: take });
     // find 메소드에 특정 값을 넣어 주면 특정값만 나오고 비어있을 경우 전체 조회
     // find({status: "PRIVATE"})
   }

@@ -3,9 +3,11 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Patch,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -14,16 +16,23 @@ import { BoardEntity } from './board.entity';
 import { BoardDto } from './board.dto';
 import { BoardStatus } from './board.status';
 import { BoardStatusValiationPipe } from './board-status.valiation.pipe';
+import { util } from 'prettier';
+import skip = util.skip;
+import { log } from 'util';
 
 @Controller('/board')
 export class BoardController {
+  private logger = new Logger('BoardsController');
   constructor(private boardService: BoardService) {
     this.boardService = boardService;
   }
   // //find All
   @Get('')
-  getBoards(): Promise<BoardEntity[]> {
-    return this.boardService.getAllBoards();
+  getBoards(
+    @Query('skip') skip: number,
+    @Query('take') take: number,
+  ): Promise<BoardEntity[]> {
+    return this.boardService.getAllBoards(skip, take);
   }
 
   // @Get('')
@@ -38,6 +47,8 @@ export class BoardController {
     //@Body('description') description: string,
     @Body() boardDto: BoardDto,
   ): Promise<BoardEntity> {
+    this.logger.log(`creating a new board
+  Payload:${JSON.stringify(BoardDto)}`);
     console.log(boardDto);
     return this.boardService.createBoard(boardDto);
   }
