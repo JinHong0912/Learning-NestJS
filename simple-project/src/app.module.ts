@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { BoardsModule } from './board/board.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from './configs/typeorm.config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   //Board
-  imports: [BoardsModule, TypeOrmModule.forRoot(typeormConfig)],
+  imports: [BoardsModule, TypeOrmModule.forRoot(typeormConfig), AuthModule],
   controllers: [],
   providers: [],
 
