@@ -4,9 +4,9 @@ import { AuthCredentialDto } from './auth-credential.dto';
 
 @EntityRepository(UserEntity)
 export class UserRepository extends Repository<UserEntity> {
-  async createUser(authCredentialDto: AuthCredentialDto): Promise<void> {
+  async createUser(authCredentialDto: AuthCredentialDto): Promise<UserEntity> {
     const { username, password } = authCredentialDto;
     const userEntity = this.create({ username, password });
-    await this.save(userEntity);
+    return await this.save(userEntity);
   }
 }
