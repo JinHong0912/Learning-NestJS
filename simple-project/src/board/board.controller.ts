@@ -58,13 +58,13 @@ export class BoardController {
   getBoardById(@Param('id') id: number): Promise<BoardEntity> {
     return this.boardService.getBoardById(id);
   }
-  //삭제
+  // delete
   @Delete(':id')
   deleteBoard(@Param('id') id: number): Promise<void> {
     //this.boardService.deleteBoard(id);
     return this.boardService.deleteBoard(id);
   }
-  // // update
+  // update
   @Patch(':id/status')
   updateBaordStatus(
     @Param('id') id: number,
