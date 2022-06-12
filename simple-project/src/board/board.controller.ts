@@ -8,6 +8,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -19,6 +20,7 @@ import { BoardStatusValiationPipe } from './board-status.valiation.pipe';
 import { util } from 'prettier';
 import skip = util.skip;
 import { log } from 'util';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/board')
 export class BoardController {
@@ -28,6 +30,7 @@ export class BoardController {
   }
   // //find All
   @Get('')
+  @UseGuards(AuthGuard())
   getBoards(
     @Query('skip') skip: number,
     @Query('take') take: number,

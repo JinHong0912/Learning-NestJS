@@ -1,7 +1,17 @@
-import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthCredentialDto } from './auth-credential.dto';
 import { UserEntity } from './user.entity';
+import { AuthGuard } from '@nestjs/passport';
+import { CurrentUser } from './current-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -19,4 +29,15 @@ export class AuthController {
   async signIn(@Body() authCredentialDto: AuthCredentialDto) {
     return this.authService.signIn(authCredentialDto);
   }
+
+  //Jwt TEST
+  @Get('auth_jwt')
+  @UseGuards(AuthGuard())
+  jwtTest(@CurrentUser() user: UserEntity) {
+    console.log(user);
+  }
+
+  // authJwt(@Req() req) {
+  //   console.log(req);
+  // }
 }
