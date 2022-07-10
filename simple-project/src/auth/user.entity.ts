@@ -2,10 +2,11 @@ import {
   BaseEntity,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { OneToMany } from 'typeorm/browser';
+
 import { BoardEntity } from '../board/board.entity';
 
 @Entity('user')
