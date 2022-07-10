@@ -21,6 +21,8 @@ import { util } from 'prettier';
 import skip = util.skip;
 import { log } from 'util';
 import { AuthGuard } from '@nestjs/passport';
+import { CurrentUser } from '../auth/current-user.decorator';
+import { UserEntity } from '../auth/user.entity';
 
 @Controller('/board')
 export class BoardController {
@@ -45,15 +47,17 @@ export class BoardController {
   //게시글 등록
   @Post('')
   @UsePipes(ValidationPipe)
+  @UseGuards(AuthGuard())
   createBoard(
     //@Body('title') title: string,
     //@Body('description') description: string,
     @Body() boardDto: BoardDto,
+    @CurrentUser() user: UserEntity,
   ): Promise<BoardEntity> {
     this.logger.log(`creating a new board
   Payload:${JSON.stringify(BoardDto)}`);
     console.log(boardDto);
-    return this.boardService.createBoard(boardDto);
+    return this.boardService.createBoard(boardDto, user);
   }
   // find One
   // 배열안에 보드 안에 여러 가지 게시물을  특정 아이디를 통해서 특정 게시글 찾고 정보를 리턴 해준다.

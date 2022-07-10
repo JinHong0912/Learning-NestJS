@@ -4,6 +4,7 @@ import { BoardRepository } from './board.repository';
 import { BoardEntity } from './board.entity';
 import { BoardDto } from './board.dto';
 import { BoardStatus } from './board.status';
+import { UserEntity } from '../auth/user.entity';
 
 @Injectable()
 export class BoardService {
@@ -32,7 +33,8 @@ export class BoardService {
   //
 
   //게시글 등록 생성 => BoardRepository로 이동 => Repository 코드 정리
-  createBoard(boardDto: BoardDto): Promise<BoardEntity> {
+
+  createBoard(boardDto: BoardDto, user: UserEntity): Promise<BoardEntity> {
     // const { title, description } = boardDto;
     //
     // const board = this.boardRepository.create({
@@ -41,7 +43,7 @@ export class BoardService {
     //   status: BoardStatus.PUBLIC,
     // });
     // return await this.boardRepository.save(board);
-    return this.boardRepository.createBoard(boardDto);
+    return this.boardRepository.createBoard(boardDto, user);
   }
 
   async getBoardById(id: number): Promise<BoardEntity> {
